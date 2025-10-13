@@ -1,0 +1,48 @@
+Model: backoff, DATA: neopets, AVE_LEN:4.5
+/disk/xm/auto-draw/result/chunksum/all/neopets_backoff_4.5_chunked.txt
++ python /disk/xm/auto-draw/src/chunked_avg_len.py -i /disk/xm/auto-draw/result/chunksum/all/neopets_backoff_4.5_chunked.txt
+Avg_chunk_num:4.395
+Model: backoff, DATA: cityday, AVE_LEN:4.5
+/disk/xm/auto-draw/result/chunksum/all/cityday_backoff_4.5_chunked.txt
++ python /disk/xm/auto-draw/src/chunked_avg_len.py -i /disk/xm/auto-draw/result/chunksum/all/cityday_backoff_4.5_chunked.txt
+Avg_chunk_num:4.828
+Model: backoff, DATA: 178, AVE_LEN:4.5
+/disk/xm/auto-draw/result/chunksum/all/178_backoff_4.5_chunked.txt
++ python /disk/xm/auto-draw/src/chunked_avg_len.py -i /disk/xm/auto-draw/result/chunksum/all/178_backoff_4.5_chunked.txt
+Avg_chunk_num:4.164
+Model: backoff, DATA: youku, AVE_LEN:4.5
+/disk/xm/auto-draw/result/chunksum/all/youku_backoff_4.5_chunked.txt
++ python /disk/xm/auto-draw/src/chunked_avg_len.py -i /disk/xm/auto-draw/result/chunksum/all/youku_backoff_4.5_chunked.txt
+Avg_chunk_num:4.564
+Model: pcfg, DATA: neopets, AVE_LEN:4.5
+/disk/xm/auto-draw/result/chunksum/all/neopets_pcfg_4.5_chunked.txt
++ python /disk/xm/auto-draw/src/chunked_avg_len.py -i /disk/xm/auto-draw/result/chunksum/all/neopets_pcfg_4.5_chunked.txt
+Avg_chunk_num:4.395
+Model: pcfg, DATA: cityday, AVE_LEN:4.5
+/disk/xm/auto-draw/result/chunksum/all/cityday_pcfg_4.5_chunked.txt
++ python /disk/xm/auto-draw/src/chunked_avg_len.py -i /disk/xm/auto-draw/result/chunksum/all/cityday_pcfg_4.5_chunked.txt
+Avg_chunk_num:4.828
+Model: pcfg, DATA: 178, AVE_LEN:4.5
+/disk/xm/auto-draw/result/chunksum/all/178_pcfg_4.5_chunked.txt
++ python /disk/xm/auto-draw/src/chunked_avg_len.py -i /disk/xm/auto-draw/result/chunksum/all/178_pcfg_4.5_chunked.txt
+Avg_chunk_num:4.164
+Model: pcfg, DATA: youku, AVE_LEN:4.5
+/disk/xm/auto-draw/result/chunksum/all/youku_pcfg_4.5_chunked.txt
++ python /disk/xm/auto-draw/src/chunked_avg_len.py -i /disk/xm/auto-draw/result/chunksum/all/youku_pcfg_4.5_chunked.txt
+Avg_chunk_num:4.564
+Model: fla, DATA: neopets, AVE_LEN:4.5
+/disk/xm/auto-draw/result/chunksum/all/neopets_fla_4.5_chunked.txt
++ python /disk/xm/auto-draw/src/chunked_avg_len.py -i /disk/xm/auto-draw/result/chunksum/all/neopets_fla_4.5_chunked.txt
+Avg_chunk_num:4.395
+Model: fla, DATA: cityday, AVE_LEN:4.5
+/disk/xm/auto-draw/result/chunksum/all/cityday_fla_4.5_chunked.txt
++ python /disk/xm/auto-draw/src/chunked_avg_len.py -i /disk/xm/auto-draw/result/chunksum/all/cityday_fla_4.5_chunked.txt
+Avg_chunk_num:4.828
+Model: fla, DATA: 178, AVE_LEN:4.5
+/disk/xm/auto-draw/result/chunksum/all/178_fla_4.5_chunked.txt
++ python /disk/xm/auto-draw/src/chunked_avg_len.py -i /disk/xm/auto-draw/result/chunksum/all/178_fla_4.5_chunked.txt
+Avg_chunk_num:4.164
+Model: fla, DATA: youku, AVE_LEN:4.5
+/disk/xm/auto-draw/result/chunksum/all/youku_fla_4.5_chunked.txt
++ python /disk/xm/auto-draw/src/chunked_avg_len.py -i /disk/xm/auto-draw/result/chunksum/all/youku_fla_4.5_chunked.txt
+Avg_chunk_num:4.564

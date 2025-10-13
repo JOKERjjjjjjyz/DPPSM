@@ -1,0 +1,118 @@
+MODEL: 4-gram, data: cityday, threshold: 1000_000
+Total: 4438043, Count: 3414529, Coverage: 0.7693771781841681, error data: 0
+MODEL: 4-gram, data: neopets, threshold: 1000_000
+Total: 3143847, Count: 2201983, Coverage: 0.7004103571197963, error data: 0
+MODEL: 4-gram, data: 178, threshold: 1000_000
+Total: 608562, Count: 425904, Coverage: 0.6998530963155767, error data: 0
+MODEL: 4-gram, data: youku, threshold: 1000_000
+Total: 4018301, Count: 3492161, Coverage: 0.8690640646382638, error data: 0
+
+
+MODEL: ckl-backoff, data: cityday, threshold: 1000_000
+Total: 4924314, Count: 3858176, Coverage: 0.7834951223662829, error data: 0
+MODEL: ckl-backoff, data: neopets, threshold: 1000_000
+Total: 3327441, Count: 3858176, Coverage: 0.7077264480422042, error data: 0
+MODEL: ckl-backoff, data: 178, threshold: 1000_000
+Total: 627053, Count: 443046, Coverage: 0.7065527156396668, error data: 0
+MODEL: ckl-backoff, data: youku, threshold: 1000_000
+Total: 4190231, Count: 3643166, Coverage: 0.8694427586450485, error data: 0
+
+
+MODEL: pcfg, data: cityday, threshold: 1000_000
+Total: 4577746, Count: 3634608, Coverage: 0.7939732785523705, error data: 0
+MODEL: pcfg, data: neopets, threshold: 1000_000
+Total: 2849507, Count: 2021464, Coverage: 0.7094083292302844, error data: 0
+MODEL: pcfg, data: 178, threshold: 1000_000
+Total: 323520, Count: 204665, Coverage: 0.63261931256182, error data: 0
+MODEL: pcfg, data: youku, threshold: 1000_000
+Total: 1836158, Count: 1574033, Coverage: 0.8572426773730801, error data: 0
+
+
+MODEL: ckl-pcfg, data: cityday, threshold: 1000_000
+Total: 5103272, Count: 4035776, Coverage: 0.7908212613397836, error data: 0
+MODEL: ckl-pcfg, data: neopets, threshold: 1000_000
+Total: 3342161, Count: 2370278, Coverage: 0.7092052118374907, error data: 0
+MODEL: ckl-pcfg, data: 178, threshold: 1000_000
+Total: 632365, Count: 448414, Coverage: 0.7091062914614187, error data: 0
+MODEL: ckl-pcfg, data: youku, threshold: 1000_000
+Total: 4256390, Count: 3709928, Coverage: 0.8716137384027309, error data: 0
+
+
+MODEL: fla, data: cityday, threshold: 1000_000
+Total: 3579072, Count: 2739414, Coverage: 0.765397846145593, error data: 0
+MODEL: fla, data: neopets, threshold: 1000_000
+Total: 2212512, Count: 1413318, Coverage: 0.6387843320171823, error data: 0
+MODEL: fla, data: 178, threshold: 1000_000
+Total: 323957, Count: 175419, Coverage: 0.5414885308852718, error data: 0
+MODEL: fla, data: youku, threshold: 1000_000
+Total: 1550255, Count: 1177685, Coverage: 0.759671795930347, error data: 0
+
+
+MODEL: ckl-fla, data: cityday, threshold: 1000_000
+Total: 5168789, Count: 4099458, Coverage: 0.7931176915908156, error data: 0
+MODEL: ckl-fla, data: neopets, threshold: 1000_000
+Total: 3315562, Count: 2344374, Coverage: 0.7070819366369864, error data: 0
+MODEL: ckl-fla, data: 178, threshold: 1000_000
+Total: 581295, Count: 398377, Coverage: 0.685326727393148, error data: 0
+MODEL: ckl-fla, data: youku, threshold: 1000_000
+Total: 3574421, Count: 3040416, Coverage: 0.8506037761080746, error data: 0
+
+
+MODEL: 4-gram, data: cityday, threshold: 1000_000_000_000_00
+Total: 4438043, Count: 202, Coverage: 4.5515557194916766e-05, error data: 0
+MODEL: 4-gram, data: neopets, threshold: 1000_000_000_000_00
+Total: 3143847, Count: 384, Coverage: 0.0001221433485789862, error data: 0
+MODEL: 4-gram, data: 178, threshold: 1000_000_000_000_00
+Total: 608562, Count: 470, Coverage: 0.0007723124348874889, error data: 0
+MODEL: 4-gram, data: youku, threshold: 1000_000_000_000_00
+Total: 4018301, Count: 10229, Coverage: 0.002545603228827308, error data: 0
+
+
+MODEL: ckl-backoff, data: cityday, threshold: 1000_000_000_000_00
+Total: 4924314, Count: 1618, Coverage: 0.0003285736855935669, error data: 0
+MODEL: ckl-backoff, data: neopets, threshold: 1000_000_000_000_00
+Total: 3327441, Count: 3455, Coverage: 0.0010383354656025457, error data: 0
+MODEL: ckl-backoff, data: 178, threshold: 1000_000_000_000_00
+Total: 627053, Count: 483, Coverage: 0.0007702698177028098, error data: 0
+MODEL: ckl-backoff, data: youku, threshold: 1000_000_000_000_00
+Total: 4190231, Count: 11463, Coverage: 0.002735648702899673, error data: 0
+
+
+MODEL: pcfg, data: cityday, threshold: 1000_000_000_000_00
+Total: 4577746, Count: 569, Coverage: 0.00012429697934310903, error data: 0
+MODEL: pcfg, data: neopets, threshold: 1000_000_000_000_00
+Total: 2849507, Count: 858, Coverage: 0.00030110471741252084, error data: 0
+MODEL: pcfg, data: 178, threshold: 1000_000_000_000_00
+Total: 323520, Count: 295, Coverage: 0.0009118447082096933, error data: 0
+MODEL: pcfg, data: youku, threshold: 1000_000_000_000_00
+Total: 1836158, Count: 4759, Coverage: 0.002591824886529373, error data: 0
+
+
+MODEL: ckl-pcfg, data: cityday, threshold: 1000_000_000_000_00
+Total: 5103272, Count: 1004, Coverage: 0.0001967365251156513, error data: 0
+MODEL: ckl-pcfg, data: neopets, threshold: 1000_000_000_000_00
+Total: 3342161, Count: 1856, Coverage: 0.000555329321358247, error data: 0
+MODEL: ckl-pcfg, data: 178, threshold: 1000_000_000_000_00
+Total: 632365, Count: 469, Coverage: 0.00074166027531568, error data: 0
+MODEL: ckl-pcfg, data: youku, threshold: 1000_000_000_000_00
+Total: 4256390, Count: 10224, Coverage: 0.0024020355277594393, error data: 0
+
+
+MODEL: fla, data: cityday, threshold: 1000_000_000_000_00
+Total: 3579072, Count: 0, Coverage: 0.0, error data: 0
+MODEL: fla, data: neopets, threshold: 1000_000_000_000_00
+Total: 2212512, Count: 0, Coverage: 0.0, error data: 0
+MODEL: fla, data: 178, threshold: 1000_000_000_000_00
+Total: 323957, Count: 2, Coverage: 6.17365884978562e-06, error data: 0
+MODEL: fla, data: youku, threshold: 1000_000_000_000_00
+Total: 1550255, Count: 23, Coverage: 1.4836268871895268e-05, error data: 0
+
+
+MODEL: ckl-fla, data: cityday, threshold: 1000_000_000_000_00
+Total: 5168789, Count: 722, Coverage: 0.00013968455667275254, error data: 0
+MODEL: ckl-fla, data: neopets, threshold: 1000_000_000_000_00
+Total: 3315562, Count: 899, Coverage: 0.0002711455855749342, error data: 0
+MODEL: ckl-fla, data: 178, threshold: 1000_000_000_000_00
+Total: 581295, Count: 344, Coverage: 0.0005917821415976398, error data: 0
+MODEL: ckl-fla, data: youku, threshold: 1000_000_000_000_00
+Total: 3574421, Count: 5454, Coverage: 0.0015258415279006026, error data: 0

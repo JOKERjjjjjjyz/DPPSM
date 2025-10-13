@@ -1,0 +1,72 @@
+Model: backoff, DATA: neopets, AVE_LEN:4.5
+Chunknum: 5     Total: 11673    Cracked: 7378(0.632056883406151)        Error number: 0
+Chunknum: 6     Total: 34148    Cracked: 9527(0.2789914489867635)       Error number: 0
+Chunknum: 7     Total: 31218    Cracked: 6215(0.19908386187455954)      Error number: 0
+Chunknum: 8     Total: 19758    Cracked: 2596(0.1313898167830752)       Error number: 0
+Chunknum: 9     Total: 5394     Cracked: 96(0.017797552836484983)       Error number: 0
+Model: backoff, DATA: cityday, AVE_LEN:4.5
+Chunknum: 5     Total: 22963    Cracked: 10608(0.4619605452249271)      Error number: 0
+Chunknum: 6     Total: 277560   Cracked: 23694(0.08536532641591008)     Error number: 0
+Chunknum: 7     Total: 168140   Cracked: 13757(0.08181872249316047)     Error number: 0
+Chunknum: 8     Total: 403643   Cracked: 4619(0.011443280324445117)     Error number: 0
+Chunknum: 9     Total: 988447   Cracked: 2351(0.0023784785628364496)    Error number: 0
+Model: backoff, DATA: 178, AVE_LEN:4.5
+Chunknum: 5     Total: 132      Cracked: 113(0.8560606060606061)        Error number: 0
+Chunknum: 6     Total: 215      Cracked: 136(0.6325581395348837)        Error number: 0
+Chunknum: 7     Total: 185      Cracked: 126(0.6810810810810811)        Error number: 0
+Chunknum: 8     Total: 45       Cracked: 9(0.2) Error number: 0
+Chunknum: 9     Total: 20       Cracked: 14(0.7)        Error number: 0
+Model: backoff, DATA: youku, AVE_LEN:4.5
+Chunknum: 5     Total: 5681     Cracked: 3952(0.6956521739130435)       Error number: 0
+Chunknum: 6     Total: 16134    Cracked: 6687(0.41446634436593527)      Error number: 0
+Chunknum: 7     Total: 10720    Cracked: 3672(0.34253731343283583)      Error number: 0
+Chunknum: 8     Total: 4950     Cracked: 654(0.1321212121212121)        Error number: 0
+Chunknum: 9     Total: 1290     Cracked: 98(0.07596899224806201)        Error number: 0
+Model: pcfg, DATA: neopets, AVE_LEN:4.5
+Chunknum: 5     Total: 11673    Cracked: 9025(0.7731517176389959)       Error number: 0
+Chunknum: 6     Total: 34148    Cracked: 15061(0.4410507203935809)      Error number: 0
+Chunknum: 7     Total: 31218    Cracked: 9394(0.30091613812544044)      Error number: 0
+Chunknum: 8     Total: 19758    Cracked: 3163(0.16008705334548032)      Error number: 0
+Chunknum: 9     Total: 5394     Cracked: 100(0.01853911753800519)       Error number: 0
+Model: pcfg, DATA: cityday, AVE_LEN:4.5
+Chunknum: 5     Total: 22963    Cracked: 14650(0.6379828419631581)      Error number: 0
+Chunknum: 6     Total: 277560   Cracked: 44328(0.15970600951145697)     Error number: 0
+Chunknum: 7     Total: 168140   Cracked: 24702(0.14691328654692518)     Error number: 0
+Chunknum: 8     Total: 403643   Cracked: 9106(0.02255953899857052)      Error number: 0
+Chunknum: 9     Total: 988447   Cracked: 3061(0.0030967770654369937)    Error number: 0
+Model: pcfg, DATA: 178, AVE_LEN:4.5
+Chunknum: 5     Total: 132      Cracked: 123(0.9318181818181818)        Error number: 0
+Chunknum: 6     Total: 215      Cracked: 156(0.7255813953488373)        Error number: 0
+Chunknum: 7     Total: 185      Cracked: 91(0.4918918918918919) Error number: 0
+Chunknum: 8     Total: 45       Cracked: 16(0.35555555555555557)        Error number: 0
+Chunknum: 9     Total: 20       Cracked: 2(0.1) Error number: 0
+Model: pcfg, DATA: youku, AVE_LEN:4.5
+Chunknum: 5     Total: 5681     Cracked: 4518(0.7952825206829783)       Error number: 0
+Chunknum: 6     Total: 16134    Cracked: 8859(0.5490888806247676)       Error number: 0
+Chunknum: 7     Total: 10720    Cracked: 5312(0.4955223880597015)       Error number: 0
+Chunknum: 8     Total: 4950     Cracked: 986(0.1991919191919192)        Error number: 0
+Chunknum: 9     Total: 1290     Cracked: 63(0.04883720930232558)        Error number: 0
+Model: fla, DATA: neopets, AVE_LEN:4.5
+Chunknum: 5     Total: 11673    Cracked: 7384(0.6325708900882379)       Error number: 0
+Chunknum: 6     Total: 34148    Cracked: 10367(0.30359025418765373)     Error number: 0
+Chunknum: 7     Total: 31218    Cracked: 6608(0.21167275289896853)      Error number: 0
+Chunknum: 8     Total: 19758    Cracked: 2545(0.12880858386476365)      Error number: 0
+Chunknum: 9     Total: 5394     Cracked: 137(0.02539859102706711)       Error number: 0
+Model: fla, DATA: cityday, AVE_LEN:4.5
+Chunknum: 5     Total: 22963    Cracked: 11389(0.4959717806906763)      Error number: 0
+Chunknum: 6     Total: 277560   Cracked: 28069(0.1011276841043378)      Error number: 0
+Chunknum: 7     Total: 168140   Cracked: 15133(0.09000237896990602)     Error number: 0
+Chunknum: 8     Total: 403643   Cracked: 4739(0.011740572733826674)     Error number: 0
+Chunknum: 9     Total: 988447   Cracked: 3675(0.0037179535169816896)    Error number: 0
+Model: fla, DATA: 178, AVE_LEN:4.5
+Chunknum: 5     Total: 132      Cracked: 121(0.9166666666666666)        Error number: 0
+Chunknum: 6     Total: 215      Cracked: 134(0.6232558139534884)        Error number: 0
+Chunknum: 7     Total: 185      Cracked: 128(0.6918918918918919)        Error number: 0
+Chunknum: 8     Total: 45       Cracked: 12(0.26666666666666666)        Error number: 0
+Chunknum: 9     Total: 20       Cracked: 12(0.6)        Error number: 0
+Model: fla, DATA: youku, AVE_LEN:4.5
+Chunknum: 5     Total: 5681     Cracked: 3728(0.6562224960394297)       Error number: 0
+Chunknum: 6     Total: 16134    Cracked: 6871(0.4258708317838106)       Error number: 0
+Chunknum: 7     Total: 10720    Cracked: 3694(0.344589552238806)        Error number: 0
+Chunknum: 8     Total: 4950     Cracked: 609(0.12303030303030303)       Error number: 0
+Chunknum: 9     Total: 1290     Cracked: 53(0.04108527131782946)        Error number: 0

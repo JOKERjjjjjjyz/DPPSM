@@ -1,0 +1,4 @@
+Encode over
+TSNE over
+./script/tsne.sh: line 14: unexpected EOF while looking for matching `''
+./script/tsne.sh: line 15: syntax error: unexpected end of file

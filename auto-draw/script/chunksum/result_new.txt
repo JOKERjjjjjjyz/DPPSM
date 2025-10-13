@@ -1,0 +1,48 @@
+Model: pcfg, DATA: neopets, AVE_LEN:1.8
+Chunknum: 2	Total: 1	Cracked: 0(0.0)	Error number: 0
+Chunknum: 3	Total: 1	Cracked: 0(0.0)	Error number: 0
+Chunknum: 4	Total: 5	Cracked: 5(1.0)	Error number: 0
+Chunknum: 5	Total: 29	Cracked: 28(0.9655172413793104)	Error number: 0
+Chunknum: 6	Total: 328	Cracked: 313(0.9542682926829268)	Error number: 0
+Chunknum: 7	Total: 907	Cracked: 813(0.896361631753032)	Error number: 0
+Chunknum: 8	Total: 3767	Cracked: 3143(0.8343509423944784)	Error number: 0
+Chunknum: 9	Total: 4088	Cracked: 2916(0.713307240704501)	Error number: 0
+Chunknum: 10	Total: 10986	Cracked: 6843(0.6228836701256144)	Error number: 0
+Chunknum: 11	Total: 8660	Cracked: 4196(0.48452655889145496)	Error number: 0
+Chunknum: 12	Total: 17049	Cracked: 7140(0.41879289107865564)	Error number: 0
+Model: pcfg, DATA: 178, AVE_LEN:1.8
+Chunknum: 2	Total: 1	Cracked: 0(0.0)	Error number: 0
+Chunknum: 3	Total: 1	Cracked: 0(0.0)	Error number: 0
+Chunknum: 4	Total: 1	Cracked: 1(1.0)	Error number: 0
+Chunknum: 5	Total: 7	Cracked: 5(0.7142857142857143)	Error number: 0
+Chunknum: 6	Total: 58	Cracked: 16(0.27586206896551724)	Error number: 0
+Chunknum: 7	Total: 11	Cracked: 10(0.9090909090909091)	Error number: 0
+Chunknum: 8	Total: 31	Cracked: 30(0.967741935483871)	Error number: 0
+Chunknum: 9	Total: 44	Cracked: 39(0.8863636363636364)	Error number: 0
+Chunknum: 10	Total: 72	Cracked: 66(0.9166666666666666)	Error number: 0
+Chunknum: 11	Total: 45	Cracked: 41(0.9111111111111111)	Error number: 0
+Chunknum: 12	Total: 93	Cracked: 68(0.7311827956989247)	Error number: 0
+Model: pcfg, DATA: neopets, AVE_LEN:4.5
+Chunknum: 2	Total: 3	Cracked: 3(1.0)	Error number: 0
+Chunknum: 3	Total: 80	Cracked: 77(0.9625)	Error number: 0
+Chunknum: 4	Total: 2053	Cracked: 1906(0.9283974671212859)	Error number: 0
+Chunknum: 5	Total: 9537	Cracked: 7039(0.7380727692146377)	Error number: 0
+Chunknum: 6	Total: 34148	Cracked: 15061(0.4410507203935809)	Error number: 0
+Chunknum: 7	Total: 31218	Cracked: 9394(0.30091613812544044)	Error number: 0
+Chunknum: 8	Total: 19758	Cracked: 3163(0.16008705334548032)	Error number: 0
+Chunknum: 9	Total: 2575	Cracked: 82(0.031844660194174756)	Error number: 0
+Chunknum: 10	Total: 1376	Cracked: 17(0.012354651162790697)	Error number: 0
+Chunknum: 11	Total: 313	Cracked: 1(0.003194888178913738)	Error number: 0
+Chunknum: 12	Total: 449	Cracked: 0(0.0)	Error number: 0
+Model: pcfg, DATA: 178, AVE_LEN:4.5
+Chunknum: 2	Total: 1	Cracked: 0(0.0)	Error number: 0
+Chunknum: 3	Total: 1	Cracked: 1(1.0)	Error number: 0
+Chunknum: 4	Total: 18	Cracked: 17(0.9444444444444444)	Error number: 0
+Chunknum: 5	Total: 113	Cracked: 105(0.9292035398230089)	Error number: 0
+Chunknum: 6	Total: 215	Cracked: 156(0.7255813953488373)	Error number: 0
+Chunknum: 7	Total: 185	Cracked: 91(0.4918918918918919)	Error number: 0
+Chunknum: 8	Total: 45	Cracked: 16(0.35555555555555557)	Error number: 0
+Chunknum: 9	Total: 3	Cracked: 2(0.6666666666666666)	Error number: 0
+Chunknum: 10	Total: 1	Cracked: 0(0.0)	Error number: 0
+Chunknum: 11	Total: 2	Cracked: 0(0.0)	Error number: 0
+Chunknum: 12	Total: 13	Cracked: 0(0.0)	Error number: 0

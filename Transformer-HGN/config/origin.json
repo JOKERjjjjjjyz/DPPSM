@@ -1,0 +1,7 @@
+{
+  "train": "/home/guest/zsf/jyz/montecarlopwd/dataset/example/rockyou10w.txt",
+  "epochs": 5,
+  "batch": 512,
+  "lr": 0.0003,
+  "out": "model/rockyou2019.pt"
+}

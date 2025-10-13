@@ -1,0 +1,20 @@
+{
+  "train_tsv": "/home/guest/zsf/jyz/PSMGuard/dataset/usacombo_freq.tsv",
+
+  "pretrained": "model/rockyou2019.pt",
+
+  "epochs": 10,
+  "batch": 1024,
+  "lr": 0.0001,
+
+  "loss_type": "bce",
+
+  "out": "model/rockyou2019_usacombo_finetuned.pt",
+
+  "hidden_dim": 256,
+  "ffn_dim": 512,
+  "num_heads": 8,
+  "num_layers": 4,
+
+  "finetune_full": true
+}

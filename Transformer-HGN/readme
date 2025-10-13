@@ -1,0 +1,3 @@
+python Transformer.py --config ./config/origin.json
+
+python finetune.py --config ./config/finetune.json

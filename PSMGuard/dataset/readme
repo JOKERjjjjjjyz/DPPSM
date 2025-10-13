@@ -1,0 +1,1 @@
+python build_pwd_freq_tsv.py --input passwords.txt --output pwd_freq.tsv --sort

@@ -1,0 +1,17 @@
+{
+    "lstm_seq_len": 40,
+    "vocab_size": 97,
+    "hidden_size": 128,
+    "layers": 2,
+    "embedding_layer": true,
+    "train_backwards": false,
+    "dropouts": false,
+    "epoch_size": 10,
+    "batch_per_epoch": 3000,
+    "batch_print_size": 1,
+    "model_file": "./models/model/rockyou_new_dpsgd_0.1236.pth",
+    "pwd_file": "./data/trainset/rockyou_new.txt",
+    "epsilon_Abovethreshold":0.1,
+    "threshold": 5,
+    "sample_rate": 0.00035
+}

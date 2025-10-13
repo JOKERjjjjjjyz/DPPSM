@@ -1,0 +1,17 @@
+{
+    "lstm_seq_len": 40,
+    "vocab_size": 97,
+    "hidden_size": 128,
+    "layers": 2,
+    "embedding_layer": true,
+    "train_backwards": false,
+    "dropouts": false,
+    "epoch_size": 20,
+    "batch_per_epoch": 10000,
+    "batch_print_size": 1,
+    "model_file": "./models/ablation/rockyou_new_abla1_0.9701.pth",
+    "pwd_file": "./data/trainset/rockyou_new.txt",
+    "epsilon_Abovethreshold":0.1,
+    "threshold": 5,
+    "sample_rate": 0.0001
+}

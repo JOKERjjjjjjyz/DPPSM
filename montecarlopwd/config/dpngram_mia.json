@@ -1,0 +1,28 @@
+{
+  "reference_model": {
+    "backoff": {
+      "model_path": "./models/backoff_model.db",
+      "threshold": 10
+    }
+  },
+  "target_models": {
+    "ngram_dp": {
+      "model_path": "./model/4gram_dp_model_eps_2.0.db",
+      "n": 4
+    },
+    "dpfla": {
+      "config_path": "config/rockyou_dpfla_train.json",
+      "checkpoint_path": "./models/model/rockyou320w_dpfla_0.1178.pth",
+      "estimator_cache": "./estimators/rockyou320w_dpfla_0.1178_estimator.pkl"
+    },
+    "dpsgd": {
+      "config_path": "config/rockyou_dpsgd_train.json",
+      "checkpoint_path": "./models/model/rockyou320w_dpsgd_0.1236.pth",
+      "estimator_cache": "./estimators/rockyou320w_dpsgd_0.1236_estimator.pkl"
+    }
+  },
+  "data": {
+    "ground_truth_members": "./data/test/ground_truth_members.txt",
+    "ground_truth_non_members": "./data/test/ground_truth_non_members.txt"
+  }
+}

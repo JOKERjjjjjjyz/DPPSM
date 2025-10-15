@@ -132,8 +132,8 @@ if __name__ == "__main__":
     def run_training_demo():
         """演示如何调用 train_model 函数"""
         print("\n*** RUNNING TRAINING DEMO ***")
-        TRAIN_FILE = "path/to/your/training_passwords.txt" # <-- 修改这里
-        MODEL_SAVE_PATH = "./models/4gram_dp_model_eps_2.0.db" # <-- 修改这里
+        TRAIN_FILE = "dataset/rockyou2019/rockyou_new.txt" # <-- 修改这里
+        MODEL_SAVE_PATH = "./model/4gram_dp_model_eps_2.0.db" # <-- 修改这里
         N_GRAM = 4
         EPSILON = 2.0
         train_model(
@@ -198,6 +198,6 @@ if __name__ == "__main__":
     # --- 指令 ---
     # 根据您的需要，取消下面一行的注释来运行对应的演示。
     
-    # run_training_demo()
+    run_training_demo()
     # run_batch_inference_demo()
-    run_single_inference_demo()
+    # run_single_inference_demo()

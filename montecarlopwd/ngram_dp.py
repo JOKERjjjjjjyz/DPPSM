@@ -87,47 +87,59 @@ class NGramModel(model.Model):
     def get_from_shelf(cls, shelfname, *args, **kwargs):
         return cls([], *args, shelfname=shelfname, **kwargs)
 
-    # 替换这个方法到你的 ngram_dp.py 中
+    # 请用这个新版本完整替换 ngram_dp.py 中的 __init__ 方法
     def __init__(self, words, n, epsilon, with_counts=False, shelfname=None):
         self.start = start = default_start(n)
         self.end = end = '\0'
-        # [重要] 提前设置self.shelfname，以修复 secondary `AttributeError` in __del__
         self.shelfname = shelfname
         
         transitions = collections.defaultdict(list)
         
-        # 【核心修正】: 只有在提供了训练数据(words)时，才执行训练逻辑
         if words is not None:
-            noise_scale = 2 * (33 - n)
-            print("Running in Training Mode: Calculating n-grams and adding noise...")
+            print(f"Running in Training Mode with epsilon = {epsilon}...")
+            
+            # 只有在需要加噪时才计算 noise_scale
+            if epsilon != 0:
+                noise_scale = 2 * (33 - n)
+                print("Differential Privacy is ON.")
+            else:
+                print("Differential Privacy is OFF (epsilon=0). Using true counts.")
+
             for ngram, count in ngrams_counter(words, n, start, end,
                                             with_counts).items():
-                count = max(1, count + np.random.laplace(0, noise_scale / epsilon, size=1).item())
+                
+                # 【核心修正】: 只有在 epsilon 不为 0 时才添加拉普拉斯噪音
+                if epsilon != 0:
+                    noisy_count = count + np.random.laplace(0, noise_scale / epsilon, size=1).item()
+                    # 确保计数值至少为1
+                    count = max(1, noisy_count)
+                
+                # 如果 epsilon 为 0, 'count' 将保持其原始的、真实的频数值
+                
                 state, transition = ngram[:-1], ngram[-1]
                 transitions[state].append((count, transition))
 
-        # 根据是训练(words不为None)还是加载(words为None)来设置shelve的打开模式
-        # 'c' for create/write, 'r' for read-only
         flags = 'c' if words is not None else 'r'
         self.nodes = nodes = self.setup_nodes(shelfname, flags)
 
-        # 后续的节点处理和保存逻辑也只应在训练时执行
         if words is not None:
             print("Processing transitions and populating shelf...")
             for state, ctlist in transitions.items():
                 ctlist.sort(reverse=True, key=operator.itemgetter(0))
                 total = sum(c for c, _ in ctlist)
                 
-                # 为了避免变量名冲突，重命名内部的 transitions
                 transitions_list, cumprobs, logprobs = [], [], []
                 cum_counts = 0
                 for count, transition in ctlist:
+                    # 确保count是正数，以防噪音导致负值
+                    if count <= 0: continue
                     cum_counts += count
                     transitions_list.append(transition)
                     cumprobs.append(cum_counts / total)
                     logprobs.append(-math.log2(count / total))
                 
-                # 将处理好的节点存入shelf
+                if not transitions_list: continue
+
                 nodes[state] = Node(''.join(transitions_list),
                                     np.array(cumprobs),
                                     np.array(logprobs))

@@ -7,6 +7,7 @@ from typing import Tuple
 # Assume all custom modules are in the correct path
 import backoff
 import model # Assuming model.py contains PosEstimator or it is a method of the model object
+import dbm # 同样导入dbm
 
 # ==============================================================================
 # ## Function 1: Train Model
@@ -47,21 +48,23 @@ def train_model(training_data_path: str, model_save_path: str, threshold: int):
 # ==============================================================================
 # In refactor_backoff.py
 
-import dbm # 同样导入dbm
-
 def load_model(model_path: str, threshold: int) -> backoff.BackoffModel:
     """
     Loads a pre-trained BackoffModel from the specified path.
     """
     print(f"--- 📥 Loading Pre-trained Model from {model_path} ---")
     
-    # 【修正】: 移除 os.path.exists() 检查，改用 try...except 块
     try:
-        # 直接尝试加载。get_from_shelf 内部会调用 shelve.open
-        model = backoff.BackoffModel.get_from_shelf(model_path, threshold=threshold)
+        # 【核心修正】: 不再使用 get_from_shelf，而是直接调用构造函数，
+        # 并明确传入 words=None 来强制进入加载模式。
+        model = backoff.BackoffModel(
+            words=None, 
+            threshold=threshold, 
+            shelfname=model_path
+        )
         print("✅ Model loaded successfully.")
         return model
-    except dbm.error as e:
+    except (dbm.error, FileNotFoundError) as e:
         raise FileNotFoundError(f"Failed to load shelve model from '{model_path}'. "
                               f"Ensure the corresponding files (.dat, .dir, etc.) exist. Original error: {e}")
     except Exception as e:

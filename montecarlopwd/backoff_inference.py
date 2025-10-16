@@ -45,18 +45,27 @@ def train_model(training_data_path: str, model_save_path: str, threshold: int):
 # ==============================================================================
 # ## Function 2: Load Model (No changes needed)
 # ==============================================================================
+# In refactor_backoff.py
+
+import dbm # 同样导入dbm
+
 def load_model(model_path: str, threshold: int) -> backoff.BackoffModel:
     """
     Loads a pre-trained BackoffModel from the specified path.
     """
     print(f"--- 📥 Loading Pre-trained Model from {model_path} ---")
-    if not os.path.exists(model_path):
-        raise FileNotFoundError(f"Model file not found at: {model_path}")
     
-    model = backoff.BackoffModel.get_from_shelf(model_path, threshold=threshold)
-    print("✅ Model loaded successfully.")
-    return model
-
+    # 【修正】: 移除 os.path.exists() 检查，改用 try...except 块
+    try:
+        # 直接尝试加载。get_from_shelf 内部会调用 shelve.open
+        model = backoff.BackoffModel.get_from_shelf(model_path, threshold=threshold)
+        print("✅ Model loaded successfully.")
+        return model
+    except dbm.error as e:
+        raise FileNotFoundError(f"Failed to load shelve model from '{model_path}'. "
+                              f"Ensure the corresponding files (.dat, .dir, etc.) exist. Original error: {e}")
+    except Exception as e:
+        raise RuntimeError(f"An unexpected error occurred while loading the model: {e}")
 # ==============================================================================
 # ## Function 3: Inference (Batch & Single) (No changes needed)
 # ==============================================================================

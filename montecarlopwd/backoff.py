@@ -27,111 +27,120 @@ TmpNode = collections.namedtuple('TmpNode',
 
 class BackoffModel(ngram_chain.NGramModel):
 
+    # 请用这个新版本完整替换 backoff.py 中的 __init__ 方法
     def __init__(self, words, threshold, start_symbol=True,
                  with_counts=False, shelfname=None):
 
-        if not with_counts:
-            words = [(1, w) for w in words]
-
+        # [重要] 提前设置 shelfname
+        self.shelfname = shelfname
+        # 根据是训练还是加载来设置 shelve 的打开模式
+        flags = 'c' if words is not None else 'r'
+        self.nodes = nodes = self.setup_nodes(shelfname, flags)
+        
         self.start = start = '\0' if start_symbol else ''
         self.end = end = '\0'
-        lendelta = len(start) + len(end)
-        words = [(len(w) + lendelta, (c, start + w + end))
-                 for c, w in words]
+        
+        # 【核心修正】: 只有在提供了训练数据(words)时，才执行训练逻辑
+        if words is not None:
+            print("Running in Training Mode: Processing backoff logic...")
+            if not with_counts:
+                words = [(1, w) for w in words]
 
-        self.nodes = nodes = self.setup_nodes(shelfname)
+            lendelta = len(start) + len(end)
+            words = [(len(w) + lendelta, (c, start + w + end))
+                     for c, w in words]
 
-        words.sort(key=operator.itemgetter(0))
-        if not words:
-            return
+            words.sort(key=operator.itemgetter(0))
+            if not words:
+                return
 
-        lens, words = zip(*words)
-        lens = numpy.array(lens)
-        nwords = len(words)
+            lens, words = zip(*words)
+            lens = numpy.array(lens)
+            nwords = len(words)
 
-        def zerodict():
-            return collections.defaultdict(itertools.repeat(0).__next__)
+            def zerodict():
+                return collections.defaultdict(itertools.repeat(0).__next__)
 
-        charcounts = zerodict()
-        for count, word in words:
-            for c in word[start_symbol:]:
-                charcounts[c] += count
+            charcounts = zerodict()
+            for count, word in words:
+                for c in word[start_symbol:]:
+                    charcounts[c] += count
 
-        totchars = sum(charcounts.values())
-        transitions, counts = zip(*sorted(charcounts.items(),
-                                          key=operator.itemgetter(1),
-                                          reverse=True))
-        transitions = ''.join(transitions)
-        counts = numpy.array(counts)
-        totchars = counts.sum()
+            totchars = sum(charcounts.values())
+            transitions, counts = zip(*sorted(charcounts.items(),
+                                              key=operator.itemgetter(1),
+                                              reverse=True))
+            transitions = ''.join(transitions)
+            counts = numpy.array(counts)
+            totchars = counts.sum()
 
-        probabilities = counts / totchars
+            probabilities = counts / totchars
 
-        if transitions:
-            nodes[''] = TmpNode(transitions,
-                                probabilities,
-                                probabilities.cumsum(),
-                                -numpy.log2(probabilities))
+            if transitions:
+                nodes[''] = TmpNode(transitions,
+                                      probabilities,
+                                      probabilities.cumsum(),
+                                      -numpy.log2(probabilities))
 
-        leftidx = 0
-        skipwords = set()
+            leftidx = 0
+            skipwords = set()
 
-        for n in range(2, lens[-threshold] + 1):
+            # (原有的训练逻辑全部保持不变，只是被包含在了这个 if 块中)
+            for n in range(2, lens[-threshold] + 1):
+                leftidx = bisect.bisect_left(lens, n)
+                ngram_counter = zerodict()
+                for i in range(leftidx, nwords):
+                    if i in skipwords:
+                        continue
+                    count, word = words[i]
+                    skip = True
+                    for j in range(lens[i] - n + 1):
+                        ngram = word[j: j + n]
+                        if ngram[:-2] in nodes:
+                            ngram_counter[ngram] += count
+                            skip = False
+                    if skip:
+                        skipwords.add(i)
 
-            leftidx = bisect.bisect_left(lens, n)
+                tmp_dict = collections.defaultdict(list)
+                for ngram, count in ngram_counter.items():
+                    tmp_dict[ngram[:-1]].append((ngram[-1], count))
 
-            ngram_counter = zerodict()
-            for i in range(leftidx, nwords):
-                if i in skipwords:
-                    continue
-                count, word = words[i]
-                skip = True
-                for j in range(lens[i] - n + 1):
-                    ngram = word[j: j + n]
-                    if ngram[:-2] in nodes:
-                        ngram_counter[ngram] += count
-                        skip = False
-                if skip:
-                    skipwords.add(i)
+                for state, sscounts in tmp_dict.items():
+                    total = sum(count for _, count in sscounts)
+                    if total < threshold:
+                        continue
+                    trans_probs = {c: count / total
+                                   for c, count in sscounts
+                                   if count >= threshold}
+                    missing = 1 - sum(trans_probs.values())
+                    if missing == 1:
+                        continue
 
-            tmp_dict = collections.defaultdict(list)
-            for ngram, count in ngram_counter.items():
-                tmp_dict[ngram[:-1]].append((ngram[-1], count))
+                    if missing > 0:
+                        parent_state = self.nodes[state[1:]]
+                        for c, p in zip(parent_state.transitions,
+                                        parent_state.probabilities):
+                            trans_probs[c] = trans_probs.get(c, 0) + p * missing
 
-            for state, sscounts in tmp_dict.items():
-                total = sum(count for _, count in sscounts)
-                if total < threshold:
-                    continue
-                trans_probs = {c: count / total
-                               for c, count in sscounts
-                               if count >= threshold}
-                missing = 1 - sum(trans_probs.values())
-                if missing == 1:
-                    continue
+                    trans_probs = sorted(trans_probs.items(),
+                                         key=operator.itemgetter(1),
+                                         reverse=True)
+                    transitions, probabilities = zip(*trans_probs)
+                    transitions = ''.join(transitions)
+                    probabilities = numpy.array(probabilities)
+                    
+                    nodes[state] = TmpNode(transitions, probabilities,
+                                           probabilities.cumsum(),
+                                           -numpy.log2(probabilities))
 
-                if missing > 0:
-                    parent_state = self.nodes[state[1:]]
-                    for c, p in zip(parent_state.transitions,
-                                    parent_state.probabilities):
-                        trans_probs[c] = trans_probs.get(c, 0) + p * missing
-
-                trans_probs = sorted(trans_probs.items(),
-                                     key=operator.itemgetter(1),
-                                     reverse=True)
-                transitions, probabilities = zip(*trans_probs)
-                transitions = ''.join(transitions)
-                probabilities = numpy.array(probabilities)
-                # probabilities must sum to 1
-#                assert abs(probabilities.sum() - 1) < 0.001
-
-                nodes[state] = TmpNode(transitions, probabilities,
-                                       probabilities.cumsum(),
-                                       -numpy.log2(probabilities))
-
-        Node = ngram_chain.Node
-        for state, node in self.nodes.items():
-            nodes[state] = Node(node.transitions, node.cumprobs,
-                                node.logprobs)
+            Node = ngram_chain.Node
+            for state, node in self.nodes.items():
+                nodes[state] = Node(node.transitions, node.cumprobs,
+                                    node.logprobs)
+            print("Training and shelf population complete.")
+        else:
+             print("Running in Loading Mode: Bypassing training logic.")
 
     def update_state(self, state, transition):
         nodes = self.nodes

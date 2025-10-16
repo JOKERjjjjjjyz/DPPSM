@@ -36,19 +36,31 @@ def train_model(training_data_path: str, model_save_path: str, n: int, epsilon: 
     print(f"Total training time: {time.time() - start_time:.2f} seconds.")
 
 
-def load_model(model_path: str, n: int) -> ngram_dp.NGramModel:
+# In refactor_ngram_dp.py
+
+import dbm # 导入dbm以捕获可能的特定数据库错误
+
+def load_model(model_path: str, n: int, epsilon: float) -> ngram_dp.NGramModel:
     """
     从指定路径加载一个已经训练好的 n-gram 模型。
     """
     print(f"--- Loading Pre-trained Model ---")
-    if not os.path.exists(model_path):
-        raise FileNotFoundError(f"Model file not found at: {model_path}")
-        
-    print(f"Loading {n}-gram model from: {model_path}")
-    model = ngram_dp.NGramModel(words=None, n=n, shelfname=model_path)
-    print("Model loaded successfully.")
-    return model
-
+    print(f"Loading {n}-gram model from: {model_path} with epsilon={epsilon}")
+    
+    # 【修正】: 移除 os.path.exists() 检查，改用 try...except 块
+    try:
+        # 直接尝试加载。如果shelve文件不存在，这里会抛出异常
+        model = ngram_dp.NGramModel(words=None, n=n, shelfname=model_path, epsilon=epsilon)
+        print("Model loaded successfully.")
+        return model
+    except dbm.error as e:
+        # shelve 在找不到文件时通常会抛出 dbm.error
+        # 捕获这个特定的异常，并给出更清晰的错误信息
+        raise FileNotFoundError(f"Failed to load shelve model from '{model_path}'. "
+                              f"Ensure the corresponding files (.dat, .dir, etc.) exist. Original error: {e}")
+    except Exception as e:
+        # 捕获其他可能的异常
+        raise RuntimeError(f"An unexpected error occurred while loading the model: {e}")
 
 def inference_for_batch(model: ngram_dp.NGramModel, test_data_path: str, sample_size: int) -> pd.DataFrame:
     """
@@ -132,8 +144,8 @@ if __name__ == "__main__":
     def run_training_demo():
         """演示如何调用 train_model 函数"""
         print("\n*** RUNNING TRAINING DEMO ***")
-        TRAIN_FILE = "dataset/rockyou2019/rockyou_new.txt" # <-- 修改这里
-        MODEL_SAVE_PATH = "./model/4gram_dp_model_eps_2.0.db" # <-- 修改这里
+        TRAIN_FILE = "dataset/rockyou2019/train_set.txt" # <-- 修改这里
+        MODEL_SAVE_PATH = "./models/4gram_dp_model_eps_2.0.db" # <-- 修改这里
         N_GRAM = 4
         EPSILON = 2.0
         train_model(
@@ -147,14 +159,17 @@ if __name__ == "__main__":
     def run_batch_inference_demo():
         """演示如何加载模型并对整个文件进行推理"""
         print("\n*** RUNNING BATCH INFERENCE DEMO ***")
-        MODEL_PATH = "./models/4gram_dp_model_eps_2.0.db" # <-- 修改这里
-        TEST_FILE = "path/to/your/test_passwords.txt" # <-- 修改这里
-        OUTPUT_CSV_PATH = "./results/inference_results.csv" # <-- 修改这里
+        MODEL_PATH = "./models/4gram_dp_model_eps_2.0.db"
+        TEST_FILE = "path/to/your/test_passwords.txt"
+        OUTPUT_CSV_PATH = "./results/inference_results.csv"
         N_GRAM = 4
+        EPSILON = 2.0  # 【修正 2】: 定义加载模型时使用的epsilon
         SAMPLE_SIZE = 10000
 
         try:
-            my_model = load_model(model_path=MODEL_PATH, n=N_GRAM)
+            # 调用修正后的 load_model
+            my_model = load_model(model_path=MODEL_PATH, n=N_GRAM, epsilon=EPSILON)
+            
             results_df = inference_for_batch(
                 model=my_model,
                 test_data_path=TEST_FILE,
@@ -172,18 +187,19 @@ if __name__ == "__main__":
     def run_single_inference_demo():
         """演示如何加载模型并对单个密码进行推理，获取概率和猜测数"""
         print("\n*** RUNNING SINGLE PASSWORD INFERENCE DEMO ***")
-        MODEL_PATH = "./models/4gram_dp_model_eps_2.0.db" # <-- 修改这里
+        MODEL_PATH = "./models/4gram_dp_model_eps_2.0.db"
         N_GRAM = 4
-        PASSWORD_TO_CHECK = "Tr0ub4dor&3" # <-- 修改这里
+        EPSILON = 2.0 # 【修正 2】: 定义加载模型时使用的epsilon
+        PASSWORD_TO_CHECK = "Tr0ub4dor&3"
 
         try:
-            my_model = load_model(model_path=MODEL_PATH, n=N_GRAM)
+            # 调用修正后的 load_model
+            my_model = load_model(model_path=MODEL_PATH, n=N_GRAM, epsilon=EPSILON)
             
-            # 调用新函数
             log_prob, guess_num = inference_for_single_password(
                 model=my_model,
                 password=PASSWORD_TO_CHECK,
-                sample_size=10000 # 可以按需调整样本大小
+                sample_size=10000
             )
             
             print("\n--- Inference Result ---")

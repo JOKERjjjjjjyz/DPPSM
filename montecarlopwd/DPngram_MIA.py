@@ -63,7 +63,7 @@ def analyze_and_plot_roc_auc(df_scores: pd.DataFrame, model_name: str):
     plt.show()
 
 if __name__ == '__main__':
-    CONFIG_FILE = "config_mia.json"
+    CONFIG_FILE = "dpngram_mia.json"
     with open(CONFIG_FILE, 'r') as f:
         config = json.load(f)
 
@@ -74,7 +74,7 @@ if __name__ == '__main__':
     cfg_target = config['target_models']['ngram_dp']
     cfg_ref = config['reference_model']['backoff']
     
-    target_model = load_ngram_model(model_path=cfg_target['model_path'], n=cfg_target['n'])
+    target_model = load_ngram_model(model_path=cfg_target['model_path'], n=cfg_target['n'], epsilon=cfg_target['epsilon'])
     ref_model = load_backoff_model(model_path=cfg_ref['model_path'], threshold=cfg_ref['threshold'])
 
     # 2. 获取MIA分数

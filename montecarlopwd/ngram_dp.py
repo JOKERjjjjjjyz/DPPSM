@@ -87,32 +87,53 @@ class NGramModel(model.Model):
     def get_from_shelf(cls, shelfname, *args, **kwargs):
         return cls([], *args, shelfname=shelfname, **kwargs)
 
+    # 替换这个方法到你的 ngram_dp.py 中
     def __init__(self, words, n, epsilon, with_counts=False, shelfname=None):
         self.start = start = default_start(n)
         self.end = end = '\0'
-        noise_scale = 2 * (33 - n)
+        # [重要] 提前设置self.shelfname，以修复 secondary `AttributeError` in __del__
+        self.shelfname = shelfname
+        
         transitions = collections.defaultdict(list)
-        for ngram, count in ngrams_counter(words, n, start, end,
-                                           with_counts).items():
-            count = max(1,count+np.random.laplace(0, noise_scale / epsilon, size=1).item())
-            state, transition = ngram[:-1], ngram[-1]
-            transitions[state].append((count, transition))
+        
+        # 【核心修正】: 只有在提供了训练数据(words)时，才执行训练逻辑
+        if words is not None:
+            noise_scale = 2 * (33 - n)
+            print("Running in Training Mode: Calculating n-grams and adding noise...")
+            for ngram, count in ngrams_counter(words, n, start, end,
+                                            with_counts).items():
+                count = max(1, count + np.random.laplace(0, noise_scale / epsilon, size=1).item())
+                state, transition = ngram[:-1], ngram[-1]
+                transitions[state].append((count, transition))
 
-        flags = 'c' if words else 'r'
+        # 根据是训练(words不为None)还是加载(words为None)来设置shelve的打开模式
+        # 'c' for create/write, 'r' for read-only
+        flags = 'c' if words is not None else 'r'
         self.nodes = nodes = self.setup_nodes(shelfname, flags)
-        for state, ctlist in transitions.items():
-            ctlist.sort(reverse=True, key=operator.itemgetter(0))
-            total = sum(c for c, _ in ctlist)
-            transitions, cumprobs, logprobs = [], [], []
-            cum_counts = 0
-            for count, transition in ctlist:
-                cum_counts += count
-                transitions.append(transition)
-                cumprobs.append(cum_counts / total)
-                logprobs.append(-math.log2(count / total))
-            nodes[state] = Node(''.join(transitions),
-                                np.array(cumprobs),
-                                np.array(logprobs))
+
+        # 后续的节点处理和保存逻辑也只应在训练时执行
+        if words is not None:
+            print("Processing transitions and populating shelf...")
+            for state, ctlist in transitions.items():
+                ctlist.sort(reverse=True, key=operator.itemgetter(0))
+                total = sum(c for c, _ in ctlist)
+                
+                # 为了避免变量名冲突，重命名内部的 transitions
+                transitions_list, cumprobs, logprobs = [], [], []
+                cum_counts = 0
+                for count, transition in ctlist:
+                    cum_counts += count
+                    transitions_list.append(transition)
+                    cumprobs.append(cum_counts / total)
+                    logprobs.append(-math.log2(count / total))
+                
+                # 将处理好的节点存入shelf
+                nodes[state] = Node(''.join(transitions_list),
+                                    np.array(cumprobs),
+                                    np.array(logprobs))
+            print("Shelf population complete.")
+        else:
+            print("Running in Loading Mode: Bypassing training logic.")
 
     def save_to_shelf(self):
         """将节点保存到 shelve 文件"""

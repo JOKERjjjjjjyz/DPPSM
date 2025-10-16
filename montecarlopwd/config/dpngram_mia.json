@@ -1,5 +1,13 @@
-{
+{  "output_config": {
+    "plot_path_template": "./plots/mia_roc_{model_name}_nodp.pdf",
+    "scores_csv_path_template": "./results/mia_scores_{model_name}_nodp.csv"
+  },
   "reference_model": {
+    "ngram_ref": {
+      "model_path": "./models/4gram_ref_model.db",
+      "n": 4,
+      "epsilon": 0.0
+    },
     "backoff": {
       "model_path": "./models/backoff_model.db",
       "threshold": 10
@@ -7,8 +15,9 @@
   },
   "target_models": {
     "ngram_dp": {
-      "model_path": "./model/4gram_dp_model_eps_2.0.db",
-      "n": 4
+      "model_path": "./models/4gram_dp_model_eps_0.0.db",
+      "n": 4,
+      "epsilon": 0.0
     },
     "dpfla": {
       "config_path": "config/rockyou_dpfla_train.json",
@@ -22,7 +31,7 @@
     }
   },
   "data": {
-    "ground_truth_members": "./data/test/ground_truth_members.txt",
-    "ground_truth_non_members": "./data/test/ground_truth_non_members.txt"
+    "ground_truth_members": "./dataset/rockyou2019/ground_truth_members.txt",
+    "ground_truth_non_members": "./dataset/rockyou2019/ground_truth_non_members.txt"
   }
 }

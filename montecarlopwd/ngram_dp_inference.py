@@ -144,8 +144,9 @@ if __name__ == "__main__":
     def run_training_demo():
         """演示如何调用 train_model 函数"""
         print("\n*** RUNNING TRAINING DEMO ***")
-        TRAIN_FILE = "dataset/rockyou2019/train_set.txt" # <-- 修改这里
-        MODEL_SAVE_PATH = "./models/4gram_dp_model_eps_0.0.db" # <-- 修改这里
+        # TRAIN_FILE = "dataset/rockyou2019/train_set.txt" # <-- 修改这里
+        TRAIN_FILE = "dataset/csdn/csdnn_new.txt"
+        MODEL_SAVE_PATH = "./models/4gram_ref_model.db" # <-- 修改这里
         N_GRAM = 4
         EPSILON = 0.0
         train_model(

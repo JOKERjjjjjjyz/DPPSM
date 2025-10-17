@@ -1,0 +1,26 @@
+{
+  "output_config": {
+    "plot_path_template": "./plots/mia_roc_{model_name}.pdf",
+    "scores_csv_path_template": "./results/mia_scores_{model_name}.csv"
+  },
+
+  "reference_model": {
+    "dpfla_ref": {
+      "config_path": "config/dpfla_reference_model.json"
+    }
+  },
+
+  "target_models": {
+    "dpfla_epsilon_0.2": {
+      "config_path": "config/dpfla_target_model_eps_0.2.json"
+    },
+    "dpfla_epsilon_1.0": {
+      "config_path": "config/dpfla_target_model_eps_1.0.json"
+    }
+  },
+
+  "data": {
+    "ground_truth_members": "./data/mia/members.txt",
+    "ground_truth_non_members": "./data/mia/non_members.txt"
+  }
+}

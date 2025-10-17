@@ -11,7 +11,11 @@
     "batch_print_size": 1,
     "model_file": "./models/model/rockyou_new_dpsgd_0.1236.pth",
     "pwd_file": "./data/trainset/rockyou_new.txt",
+    "test_file": "./data/test/cityday_less.txt",
+    "estimator_cache_file": "./estimator_model/rockyou_new_dpsgd_0.1236_estimator.pkl",
+    "result_file": "./results/dpsgd_rockyou_new_0.1236.csv",
     "epsilon_Abovethreshold":0.1,
     "threshold": 5,
+    "dp_enabled": false,
     "sample_rate": 0.00035
 }
